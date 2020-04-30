@@ -53,18 +53,18 @@
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function (response) {
             console.log('Successful login for: ' + response.name);
-            status_div.innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + '!';
+            document.getElementById("status").innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + '!';
 
-            if (logout_button_div.style.display === "none") {
-                logout_button_div.style.display = "block";
+            if (document.getElementById("logout-button").style.display === "none") {
+                document.getElementById("logout-button").style.display = "block";
             } else {
-                logout_button_div.style.display = "none";
+                document.getElementById("logout-button").style.display = "none";
             }
         });
     }
     function fbLogOut() {
         FB.logout(function (response) {
-            logout_button_div.innerHTML = 'You just logout!';
+            document.getElementById("logout-button").innerHTML = 'You just logout!';
         });
     }
 </script>
