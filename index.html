@@ -46,24 +46,28 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
+    var status_div = document.getElementById("status");
+    var logout_button_div = document.getElementById("logout-button");
+
     function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function (response) {
             console.log('Successful login for: ' + response.name);
-            document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + '!';
-            document.getElementById('logout-button').show()
+            status_div.innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + '!';
+
+            if (logout_button_div.style.display === "none") {
+                logout_button_div.style.display = "block";
+            } else {
+                logout_button_div.style.display = "none";
+            }
         });
     }
-
     function fbLogOut() {
         FB.logout(function (response) {
-            document.getElementById('logout-button').innerHTML = 'You just logout!';
+            logout_button_div.innerHTML = 'You just logout!';
         });
     }
 </script>
-
-
-// The JS SDK Login Button
 
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
