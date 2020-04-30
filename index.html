@@ -55,16 +55,15 @@
             console.log('Successful login for: ' + response.name);
             document.getElementById("status").innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + '!';
 
-            if (document.getElementById("logout-button").style.display === "none") {
-                document.getElementById("logout-button").style.display = "block";
-            } else {
-                document.getElementById("logout-button").style.display = "none";
-            }
+
+            document.getElementById("logout-button").style.display = "block";
         });
     }
+
     function fbLogOut() {
         FB.logout(function (response) {
             document.getElementById("logout-button").innerHTML = 'You just logout!';
+            document.getElementById("logout-button").style.display = "none";
         });
     }
 </script>
