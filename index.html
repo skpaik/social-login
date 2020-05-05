@@ -39,7 +39,7 @@
         }
 
         .form-signin {
-            max-width: 640px !important;
+            max-width: 1024px !important;
         }
     </style>
     <!-- Custom styles for this template -->
@@ -109,13 +109,16 @@
         facebook_status_element.innerHTML = 'Welcome!  Fetching your information.... ';
 
         var facebook_auth_data_element = document.getElementById("facebook_auth_data");
-        facebook_auth_data_element.innerHTML = "accessToken:" + authResponse.accessToken + "\nexpiresIn: " + authResponse.expiresIn + "\nsignedRequest: " + authResponse.signedRequest + "\nuserID: " + authResponse.userID;
+        facebook_auth_data_element.innerHTML = "\naccessToken:"
+            + authResponse.accessToken + "\n\nexpiresIn: "
+            + authResponse.expiresIn + "\n\nsignedRequest: "
+            + authResponse.signedRequest + "\n\nuserID: "
+            + authResponse.userID;
 
-
-        FB.api('/me', 'GET',
-            {"fields": "id,name,address,location,hometown"},
-            function (response) {
+        FB.api('/me', 'GET', {"fields": "id,name,address,location,hometown"}, function (response) {
+                console.log('FB.api(/me');
                 console.log(response);
+
                 facebook_status_element = 'Successful login for: ' + response.name;
                 facebook_status_element.innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + '!';
                 facebook_status_element.innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + ', email is ' + response.email + '!';
@@ -152,6 +155,7 @@
     function fb_logOut() {
         FB.logout(function (response) {
             fb_showFbLogin("none", "block");
+            window.location.replace("/");
         });
     }
 
