@@ -83,9 +83,9 @@
         <h3 id="google_status">Google Login Status</h3>
         <div id="google_auth_data">Google Auth Data</div>
 
-        <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+        <div class="g-signin2 d-none" data-onsuccess="onSignIn" data-theme="dark"></div>
 
-        <div id="google_sign_in" class="btn btn-lg btn-primary btn-block g-signin2"
+        <div id="google_sign_in" class="btn btn-lg btn-primary btn-block"
                 data-onsuccess="onGoogleSignIn">
             Continue with Google
         </div>
@@ -206,6 +206,9 @@
             console.log('User signed out from google of vff R&D.');
 
             document.getElementById("google_status").innerHTML = 'You are not google logged In';
+
+            document.getElementById("google_sign_in").style.display = 'block';
+            document.getElementById("google_sign_out").style.display = 'none';
         });
     }
 </script>
