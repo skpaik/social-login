@@ -76,14 +76,16 @@
 <form class="form-signin">
     <h1 class="h3 mb-3 font-weight-normal">Social sign in</h1>
 
-    <div class="d-none">
-        <h2 id="google_status">Google Status Status</h2>
+    <div class="d-block mb-5">
+        <h2>Google Status</h2>
+        <h3 id="google_status">Google Login Status</h3>
+        <div id="google_auth_data">Google Auth Data</div>
 
-        <button id="google_sign_in" class="btn btn-lg btn-primary btn-block">Continue with
-            Google
+        <button id="google_sign_in" class="btn btn-lg btn-primary btn-block" onclick="google_logIn()">
+            Continue with Google
         </button>
-        <button id="google_sign_out" class="btn btn-lg btn-outline-danger btn-block">Sign out
-            Google
+        <button id="google_sign_out" class="btn btn-lg btn-outline-danger btn-block"
+                style="display: none;" onclick="google_logOut()">Sign out Google
         </button>
     </div>
 
