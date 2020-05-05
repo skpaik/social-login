@@ -20,7 +20,8 @@
     <link rel="icon" href="assets/img/favicons/favicon.ico">
     <meta name="msapplication-config" content="assets/img/favicons/browserconfig.xml">
     <meta name="theme-color" content="#563d7c">
-
+    <meta name="google-signin-client_id"
+          content="1057667725643-2phc0tc5358v4i83bpcneh5rjb441lj1.apps.googleusercontent.com">
 
     <style>
         .bd-placeholder-img {
@@ -44,6 +45,7 @@
     </style>
     <!-- Custom styles for this template -->
     <link href="signin.css" rel="stylesheet">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </head>
 <body class="text-center">
 
@@ -81,11 +83,12 @@
         <h3 id="google_status">Google Login Status</h3>
         <div id="google_auth_data">Google Auth Data</div>
 
-        <button id="google_sign_in" class="btn btn-lg btn-primary btn-block" onclick="google_logIn()">
+        <button id="google_sign_in" class="btn btn-lg btn-primary btn-block" class="g-signin2"
+                data-onsuccess="onGoogleSignIn">
             Continue with Google
         </button>
         <button id="google_sign_out" class="btn btn-lg btn-outline-danger btn-block"
-                style="display: none;" onclick="google_logOut()">Sign out Google
+                style="display: none;" onclick="googleSignOut()">Sign out Google
         </button>
     </div>
 
@@ -161,6 +164,29 @@
         }, {scope: 'public_profile,email'});
 
         //{scope: 'public_profile,email,user_hometown,user_location'}
+    }
+
+    function onGoogleSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+
+        google_auth_data = 'Google Auth Data'
+            + '</br></br>ID: ' + profile.getId()
+            + '</br>Name: ' + profile.getName()
+            + '</br>Given Name: ' + profile.getGivenName()
+            + '</br>Family Name: ' + profile.getFamilyName()
+            + '</br>Image URL: ' + profile.getImageUrl()
+            + '</br>Email: ' + profile.getEmail();
+
+        document.getElementById("google_auth_data").innerHTML = google_auth_data
+    }
+
+    function googleSignOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out from google of vff R&D.');
+
+            document.getElementById("google_status").innerHTML = 'You are not google logged In';
+        });
     }
 </script>
 </body>
