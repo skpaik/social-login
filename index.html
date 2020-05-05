@@ -120,6 +120,7 @@
             + "</b>signedRequest: " + authResponse.signedRequest
             + "</b>userID: " + authResponse.userID;
 
+        /*
         FB.api('/me', 'GET', {"fields": "id,name,email"}, function (response_api) {
                 console.log('FB.api(/me');
                 console.log(response_api);
@@ -131,6 +132,7 @@
                 //Ajax call from here
             }
         );
+        */
     }
 
     function fb_statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
