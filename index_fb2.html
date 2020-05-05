@@ -6,10 +6,14 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Social Signin</title>
+    <title>Social Sign in</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/sign-in/">
 
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" href="assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -46,33 +50,8 @@
     <link href="signin.css" rel="stylesheet">
 </head>
 <body class="text-center">
-
-<script>
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '236893097420212',
-            cookie: true,
-            xfbml: true,
-            status: true,
-            version: 'v6.0'
-        });
-
-        FB.getLoginStatus(function (response) {  // Called after the JS SDK has been initialized.
-            fb_statusChangeCallback(response);        // Returns the login status.
-        }, true);
-    };
-
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0&appId=236893097420212&autoLogAppEvents=1"></script>
 <form class="form-signin">
     <h1 class="h3 mb-3 font-weight-normal">Social sign in</h1>
 
@@ -92,10 +71,9 @@
         <h3 id="facebook_status">Facebook Login Status</h3>
         <h3 id="facebook_auth_data">Facebook Auth Data</h3>
 
-        <button id="facebook_sign_in" class="btn btn-lg btn-primary btn-block" onclick="fb_logIn()">
-            Continue with Facebook
-        </button>
-        <button id="facebook_sign_out" class="btn btn-lg btn-outline-danger btn-block"
+        <div class="fb-login-button" data-size="medium" data-button-type="continue_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="false" data-width=""></div>
+
+        <button id="facebook_sign_out" class="btn btn-lg btn-outline-danger btn-block d-none"
                 onclick="fb_logOut()"> Sign out Facebook
         </button>
     </div>
@@ -111,22 +89,10 @@
         var facebook_auth_data_element = document.getElementById("facebook_auth_data");
         facebook_auth_data_element.innerHTML = "accessToken:" + authResponse.accessToken + "\nexpiresIn: " + authResponse.expiresIn + "\nsignedRequest: " + authResponse.signedRequest + "\nuserID: " + authResponse.userID;
 
-
-        FB.api('/me', 'GET',
-            {"fields": "id,name,address,location,hometown"},
-            function (response) {
-                console.log(response);
-                facebook_status_element = 'Successful login for: ' + response.name;
-                facebook_status_element.innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + '!';
-            }
-        );
-
-        /*
         FB.api('/me', function (response) {
             facebook_status_element = 'Successful login for: ' + response.name;
             facebook_status_element.innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + '!';
         });
-        */
     }
 
     function fb_statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
@@ -135,9 +101,9 @@
         if (response.status === 'connected') {   // Logged into your webpage and Facebook.
             fb_showFbLogin("block", "none");
 
-            //window.location.replace("/sign-out.html");
+            window.location.replace("/sign-out.html");
 
-            fb_apiMe(response.authResponse);
+            //fb_apiMe(response.authResponse);
         } else {                                 // Not logged into your webpage or we are unable to tell.
             fb_showFbLogin("none", "block");
         }
@@ -155,9 +121,9 @@
     }
 
     function fb_logIn() {
-        FB.login(function (response) {
+        FB.getLoginStatus(function (response) {   // See the onlogin handler
             fb_statusChangeCallback(response);
-        }, {scope: 'public_profile,email,user_hometown,user_location'});
+        });
     }
 </script>
 </body>
