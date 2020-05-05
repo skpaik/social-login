@@ -51,8 +51,7 @@
 </head>
 <body class="text-center">
 <div id="fb-root"></div>
-<script async defer crossorigin="anonymous"
-        src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0&appId=236893097420212&autoLogAppEvents=1"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v6.0&appId=236893097420212&autoLogAppEvents=1"></script>
 <form class="form-signin">
     <h1 class="h3 mb-3 font-weight-normal">Social sign in</h1>
 
@@ -72,8 +71,9 @@
         <h3 id="facebook_status">Facebook Login Status</h3>
         <h3 id="facebook_auth_data">Facebook Auth Data</h3>
 
-        <div class="fb-login-button" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false" data-width=""></div>
-        <button id="facebook_sign_out" class="btn btn-lg btn-outline-danger btn-block"
+        <div class="fb-login-button" data-size="medium" data-button-type="continue_with" data-layout="default" data-auto-logout-link="true" data-use-continue-as="false" data-width=""></div>
+
+        <button id="facebook_sign_out" class="btn btn-lg btn-outline-danger btn-block d-none"
                 onclick="fb_logOut()"> Sign out Facebook
         </button>
     </div>
