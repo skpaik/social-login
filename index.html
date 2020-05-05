@@ -85,15 +85,10 @@
 
         <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 
-        <div class="g-signin2"
-             data-onsuccess="onGoogleSignIn">
-            Continue with Google
-        </div>
-
-        <button id="google_sign_in" class="btn btn-lg btn-primary btn-block" class="g-signin2"
+        <div id="google_sign_in" class="btn btn-lg btn-primary btn-block g-signin2"
                 data-onsuccess="onGoogleSignIn">
             Continue with Google
-        </button>
+        </div>
         <button id="google_sign_out" class="btn btn-lg btn-outline-danger btn-block"
                 style="display: none;" onclick="googleSignOut()">Sign out Google
         </button>
@@ -185,6 +180,9 @@
             + '</br>Email: ' + profile.getEmail();
 
         document.getElementById("google_auth_data").innerHTML = google_auth_data
+
+        document.getElementById("google_sign_in").style.display = 'none';
+        document.getElementById("google_sign_out").style.display = 'block';
     }
 
     function onSignIn(googleUser) {
