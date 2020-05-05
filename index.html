@@ -118,6 +118,7 @@
                 console.log(response);
                 facebook_status_element = 'Successful login for: ' + response.name;
                 facebook_status_element.innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + '!';
+                facebook_status_element.innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + ', email is ' + response.email + '!';
             }
         );
 
@@ -157,7 +158,9 @@
     function fb_logIn() {
         FB.login(function (response) {
             fb_statusChangeCallback(response);
-        }, {scope: 'public_profile,email,user_hometown,user_location'});
+        }, {scope: 'public_profile,email'});
+
+        //{scope: 'public_profile,email,user_hometown,user_location'}
     }
 </script>
 </body>
