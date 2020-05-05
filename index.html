@@ -109,11 +109,10 @@
         facebook_status_element.innerHTML = 'Welcome!  Fetching your information.... ';
 
         var facebook_auth_data_element = document.getElementById("facebook_auth_data");
-        facebook_auth_data_element.innerHTML = "\naccessToken:"
-            + authResponse.accessToken + "\n\nexpiresIn: "
-            + authResponse.expiresIn + "\n\nsignedRequest: "
-            + authResponse.signedRequest + "\n\nuserID: "
-            + authResponse.userID;
+        facebook_auth_data_element.innerHTML = "</b>accessToken:" + authResponse.accessToken
+            + "</b>expiresIn: " + authResponse.expiresIn
+            + "</b>signedRequest: " + authResponse.signedRequest
+            + "</b>userID: " + authResponse.userID;
 
         FB.api('/me', 'GET', {"fields": "id,name,address,location,hometown"}, function (response_api) {
                 console.log('FB.api(/me');
