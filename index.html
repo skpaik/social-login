@@ -115,13 +115,13 @@
             + authResponse.signedRequest + "\n\nuserID: "
             + authResponse.userID;
 
-        FB.api('/me', 'GET', {"fields": "id,name,address,location,hometown"}, function (response) {
+        FB.api('/me', 'GET', {"fields": "id,name,address,location,hometown"}, function (response_api) {
                 console.log('FB.api(/me');
-                console.log(response);
+                console.log(response_api);
 
-                facebook_status_element = 'Successful login for: ' + response.name;
-                facebook_status_element.innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + '!';
-                facebook_status_element.innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + ', email is ' + response.email + '!';
+                //facebook_status_element = 'Successful login for: ' + response_api.name;
+                facebook_status_element.innerHTML = 'Thanks for logging in, ' + response_api.name + 'and id is ' + response_api.id + '!';
+                facebook_status_element.innerHTML = 'Thanks for logging in, ' + response_api.name + 'and id is ' + response_api.id + ', email is ' + response_api.email + '!';
             }
         );
 
