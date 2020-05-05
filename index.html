@@ -90,14 +90,12 @@
     <div class="d-block">
         <h2>Facebook Status</h2>
         <h3 id="facebook_status">Facebook Login Status</h3>
-        <h3 id="facebook_auth_data">Facebook Auth Data</h3>
+        <div id="facebook_auth_data">Facebook Auth Data</div>
 
-        <button id="facebook_sign_in" class="btn btn-lg btn-primary btn-block" onclick="fb_logIn()">
-            Continue with Facebook
-        </button>
+        <button id="facebook_sign_in" class="btn btn-lg btn-primary btn-block" onclick="fb_logIn()"
+                value="Continue with Facebook"></button>
         <button id="facebook_sign_out" class="btn btn-lg btn-outline-danger btn-block"
-                onclick="fb_logOut()"> Sign out Facebook
-        </button>
+                style="display: none;" value="Sign out Facebook" onclick="fb_logOut()"></button>
     </div>
 </form>
 
