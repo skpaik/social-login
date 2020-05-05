@@ -121,15 +121,10 @@
                 //facebook_status_element = 'Successful login for: ' + response_api.name;
                 facebook_status_element.innerHTML = 'Thanks for logging in, ' + response_api.name + ' and id is ' + response_api.id + '!';
                 facebook_status_element.innerHTML = 'Thanks for logging in, ' + response_api.name + ' and id is ' + response_api.id + ', email is ' + response_api.email + '!';
+
+                //Ajax call from here
             }
         );
-
-        /*
-        FB.api('/me', function (response) {
-            facebook_status_element = 'Successful login for: ' + response.name;
-            facebook_status_element.innerHTML = 'Thanks for logging in, ' + response.name + 'and id is ' + response.id + '!';
-        });
-        */
     }
 
     function fb_statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
