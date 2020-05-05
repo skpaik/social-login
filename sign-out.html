@@ -80,10 +80,6 @@
 
     <div class="d-none">
         <h2 id="google_status">Google Status Status</h2>
-
-        <button id="google_sign_in" class="btn btn-lg btn-primary btn-block">Continue with
-            Google
-        </button>
         <button id="google_sign_out" class="btn btn-lg btn-outline-danger btn-block">Sign out
             Google
         </button>
@@ -91,27 +87,19 @@
 
     <div class="d-block">
         <h2>Facebook Status</h2>
-        <h3 id="facebook_status">Facebook Login Status</h3>
-        <h3 id="facebook_auth_data">Facebook Auth Data</h3>
-
-        <button id="facebook_sign_in" class="btn btn-lg btn-primary btn-block" onclick="fb_logIn()">
-            Continue with Facebook
-        </button>
+        <h3 id="facebook_status">Facebook Status</h3>
         <button id="facebook_sign_out" class="btn btn-lg btn-outline-danger btn-block"
-                onclick="fb_logOut()"> Sign out Facebook
+                onclick="fb_logOut()"> Sign out
+            Facebook
         </button>
     </div>
 </form>
 
 <script type="application/javascript">
-    function fb_apiMe(authResponse) { // Testing Graph API after login.  See fb_statusChangeCallback() for when this call is made.
+    function fb_apiMe(authResponse) {                      // Testing Graph API after login.  See fb_statusChangeCallback() for when this call is made.
 
         var facebook_status_element = document.getElementById("facebook_status");
-
         facebook_status_element.innerHTML = 'Welcome!  Fetching your information.... ';
-
-        var facebook_auth_data_element = document.getElementById("facebook_auth_data");
-        facebook_auth_data_element.innerHTML = "accessToken:" + authResponse.accessToken + "\nexpiresIn: " + authResponse.expiresIn + "\nsignedRequest: " + authResponse.signedRequest + "\nuserID: " + authResponse.userID;
 
         FB.api('/me', function (response) {
             facebook_status_element = 'Successful login for: ' + response.name;
@@ -125,28 +113,21 @@
         if (response.status === 'connected') {   // Logged into your webpage and Facebook.
             fb_showFbLogin("block", "none");
 
-            window.location.replace("/sign-out.html");
-
-            //fb_apiMe(response.authResponse);
+            fb_apiMe(response.authResponse);
         } else {                                 // Not logged into your webpage or we are unable to tell.
-            fb_showFbLogin("none", "block");
+            window.location.replace("/");
         }
     }
 
     function fb_showFbLogin(none, block) {
         document.getElementById("facebook_sign_out").style.display = none;
-        document.getElementById("facebook_sign_in").style.display = block;
     }
 
     function fb_logOut() {
         FB.logout(function (response) {
-            fb_showFbLogin("none", "block");
-        });
-    }
 
-    function fb_logIn() {
-        FB.getLoginStatus(function (response) {   // See the onlogin handler
-            fb_statusChangeCallback(response);
+            window.location.replace("/");
+
         });
     }
 </script>
